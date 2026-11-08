@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!-- saved from url=(0111)file:///private/var/folders/53/l4ssbrbs2bvdvnq21903syxc0000gn/T/4018E07B-4514-4845-8E8F-D4B3AD99B6D7/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albion SC Brooklyn - EDP League Title Scenarios &amp; Presentation</title>
+  <style>
+    :root {
+      --primary: #0f2b48;
+      --accent: #2563eb;
+      --success: #16a34a;
+      --warning: #ca8a04;
+      --danger: #dc2626;
+      --bg: #090d16;
+      --card-bg: #111827;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: #1f2937;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    header {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 12px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .badge {
+      background: #1e3a8a;
+      color: #93c5fd;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .deck-container {
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 16 / 9;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .slide {
+      display: none;
+      height: 100%;
+      width: 100%;
+      padding: 48px;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 0.25s ease-out;
+    }
+    .slide.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      font-size: 2.4rem;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card-title {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .card-val {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+    .highlight-albion {
+      background: rgba(37, 99, 235, 0.15);
+      border-left: 4px solid var(--accent);
+      font-weight: 600;
+    }
+    .highlight-kickers {
+      background: rgba(220, 38, 38, 0.1);
+      border-left: 4px solid var(--danger);
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .pill-win { background: rgba(22, 163, 74, 0.2); color: #4ade80; }
+    .pill-draw { background: rgba(202, 138, 4, 0.2); color: #facc15; }
+    .pill-loss { background: rgba(220, 38, 38, 0.2); color: #f87171; }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(0, 0, 0, 0.4);
+      border-top: 1px solid var(--border);
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    button:disabled {
+      background: #374151;
+      cursor: not-allowed;
+    }
+    .slide-num {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .callout {
+      background: rgba(37, 99, 235, 0.1);
+      border-left: 4px solid #3b82f6;
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      line-height: 1.5;
+    }
+    .callout-alert {
+      background: rgba(220, 38, 38, 0.1);
+      border-left: 4px solid #ef4444;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <strong>EDP League BU13 - Flight 2 South Blue</strong>
+    </div>
+    <span class="badge">Albion SC Tactical Brief</span>
+  </header>
+
+  <div class="deck-container">
+    <!-- Slide 1: Cover -->
+    <div class="slide active" id="slide-1">
+      <span class="badge" style="width: fit-content; margin-bottom: 16px;">Flight 2 South Blue Championship Race</span>
+      <h1>Road to 1st Place: Title Scenarios</h1>
+      <p class="subtitle">Albion SC Brooklyn B13/14 Academy 1</p>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">Current Record</div>
+          <div class="card-val">5 - 0 - 1</div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">15 Pts | +22 GD (33 GF, 11 GA)</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Championship Target</div>
+          <div class="card-val">21 Points</div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Must win remaining 2 fixtures</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Critical Factor</div>
+          <div class="card-val">Kickers H2H</div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Kickers hold direct tiebreaker (3-0 on 10/18)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Current Standings -->
+    <div class="slide" id="slide-2">
+      <h2>Current Flight Standings</h2>
+      <p class="subtitle">Top 3 contending for championship; 8 games total per team.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Team</th>
+            <th>GP</th>
+            <th>W-D-L</th>
+            <th>Pts</th>
+            <th>GF-GA</th>
+            <th>GD</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-kickers">
+            <td>1</td>
+            <td>Manhattan Kickers</td>
+            <td>6</td>
+            <td>5-0-1</td>
+            <td><strong>15</strong></td>
+            <td>36-11</td>
+            <td>+25</td>
+            <td><span class="pill pill-win">H2H Lead</span></td>
+          </tr>
+          <tr class="highlight-albion">
+            <td>2</td>
+            <td>ALBION SC Brooklyn</td>
+            <td>6</td>
+            <td>5-0-1</td>
+            <td><strong>15</strong></td>
+            <td>33-11</td>
+            <td>+22</td>
+            <td><span class="pill pill-win">Contender</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>French Football Academy</td>
+            <td>6</td>
+            <td>4-0-2</td>
+            <td><strong>12</strong></td>
+            <td>20-9</td>
+            <td>+11</td>
+            <td><span class="pill pill-draw">Alive (Max 18)</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Brooklyn United Academy</td>
+            <td>6</td>
+            <td>3-0-3</td>
+            <td>9</td>
+            <td>16-15</td>
+            <td>+1</td>
+            <td><span class="pill pill-loss">Eliminated</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Progressive Youth SC</td>
+            <td>5</td>
+            <td>2-1-2</td>
+            <td>7</td>
+            <td>8-10</td>
+            <td>-2</td>
+            <td><span class="pill pill-loss">Eliminated</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Slide 3: The Golden Rule (Head to Head) -->
+    <div class="slide" id="slide-3">
+      <h2>The Tiebreaker Reality</h2>
+      <p class="subtitle">Why goal difference alone cannot crown Albion in a 2-way tie.</p>
+      <div class="callout callout-alert">
+        <strong>Official EDP League Rule #1: Head-to-Head is the Primary Tiebreaker</strong><br>
+        On October 18, Manhattan Kickers defeated Albion SC 3–0. If both teams win out to finish tied at 21 points, Manhattan Kickers automatically take 1st place on the H2H tiebreaker.
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">What Goal Difference Can't Do</div>
+          <p style="font-size: 0.95rem; line-height: 1.5; margin-top: 8px;">Even if Albion wins by 15 goals and takes the #1 goal differential in the state, Kickers still win a 2-way tie at 21 points.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">The Only Direct Route</div>
+          <p style="font-size: 0.95rem; line-height: 1.5; margin-top: 8px;"><strong>Albion must finish with MORE POINTS than Kickers.</strong> That means Albion wins out (21 pts) while Kickers drop points in either of their final 2 games (&lt;= 19 pts).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Remaining Schedule & Model Odds -->
+    <div class="slide" id="slide-4">
+      <h2>Remaining Decisive Fixtures &amp; Model Odds</h2>
+      <p class="subtitle">Win probabilities and predicted scorelines across the league.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Date &amp; Time</th>
+            <th>Matchup</th>
+            <th>Model Probabilities</th>
+            <th>Predicted Score</th>
+            <th>Key Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sun, Nov 8 (4:20 PM)</td>
+            <td>Bridgeview vs French FA</td>
+            <td>15% | 10% | <strong>75% FFA</strong></td>
+            <td>2 - 5 FFA</td>
+            <td>FFA must win to stay alive</td>
+          </tr>
+          <tr>
+            <td>Sat, Nov 14 (9:00 AM)</td>
+            <td>FA Euro vs Kickers</td>
+            <td>12% | 7% | <strong>81% MKSC</strong></td>
+            <td>1 - 5 Kickers</td>
+            <td>Kickers heavy favorites</td>
+          </tr>
+          <tr class="highlight-albion">
+            <td>Sun, Nov 15 (8:00 AM)</td>
+            <td>Progressive vs Albion SC</td>
+            <td>16% | 9% | <strong>75% Albion</strong></td>
+            <td>1 - 4 Albion</td>
+            <td>Must win at Linden Park</td>
+          </tr>
+          <tr class="highlight-kickers">
+            <td>Sun, Nov 15 (3:30 PM)</td>
+            <td>Kickers vs Eleftheria</td>
+            <td><strong>67% MKSC</strong> | 13% | 20%</td>
+            <td>3 - 1 Kickers</td>
+            <td><strong>Trap game: 33% chance Kickers slip!</strong></td>
+          </tr>
+          <tr class="highlight-albion">
+            <td>Sat, Nov 21 (2:45 PM)</td>
+            <td>Bridgeview vs Albion SC</td>
+            <td>16% | 10% | <strong>74% Albion</strong></td>
+            <td>2 - 5 Albion</td>
+            <td>Championship finale match</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Slide 5: The French FA Triangle -->
+    <div class="slide" id="slide-5">
+      <h2>Is French Football Academy Alive?</h2>
+      <p class="subtitle">The circular 3-way tiebreaker at 18 points.</p>
+      <div class="callout">
+        <strong>The Head-to-Head Loop:</strong><br>
+        Sep 13: <strong>Albion 4 - 2 FFA</strong> | Oct 18: <strong>Kickers 3 - 0 Albion</strong> | Oct 31: <strong>FFA 5 - 2 Kickers</strong><br>
+        If Kickers and Albion both drop a game (finish with 18 pts) and FFA wins both (18 pts), all three teams are 1–1 against each other! Head-to-head cancels out, and 1st place goes to Goal Differential.
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">FFA Max Points</div>
+          <div class="card-val">18 Pts</div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">FFA is eliminated the instant Albion or Kickers reaches 19 pts.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Albion Elimination Lock</div>
+          <div class="card-val">4 Points</div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">1 Win + 1 Draw guarantees Albion finishes above FFA.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Action Plan -->
+    <div class="slide" id="slide-6">
+      <h2>Tactical Execution Checklist</h2>
+      <p class="subtitle">Exact steps to secure 1st place in Flight 2 South Blue.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">1. Sunday, Nov 15 @ 8:00 AM</div>
+          <p style="font-size: 1.1rem; font-weight: 600; margin-top: 6px;">Beat Progressive Youth SC</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Linden Park Soccer 2. Fast start, high tempo to reach 18 points.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Sunday, Nov 15 @ 3:30 PM</div>
+          <p style="font-size: 1.1rem; font-weight: 600; margin-top: 6px;">Scout Kickers vs Eleftheria</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Eleftheria beat FFA 3-0. Any draw or loss gives Albion total control.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3. Saturday, Nov 21 @ 2:45 PM</div>
+          <p style="font-size: 1.1rem; font-weight: 600; margin-top: 6px;">Defeat Bridgeview SA</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Grady High School Field. Clinch 21 points and 1st place in the flight.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls" style="width: 100%; max-width: 1000px; border-radius: 0 0 16px 16px;">
+    <button id="prevBtn" onclick="prevSlide()" disabled="">← Previous</button>
+    <span class="slide-num" id="slideNum">Slide 1 of 6</span>
+    <button id="nextBtn" onclick="nextSlide()">Next →</button>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 6;
+
+    function updateSlide() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const el = document.getElementById(`slide-${i}`);
+        if (el) el.classList.remove('active');
+      }
+      const activeEl = document.getElementById(`slide-${currentSlide}`);
+      if (activeEl) activeEl.classList.add('active');
+
+      document.getElementById('slideNum').textContent = `Slide ${currentSlide} of ${totalSlides}`;
+      document.getElementById('prevBtn').disabled = currentSlide === 1;
+      document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+
+
+</body></html>
